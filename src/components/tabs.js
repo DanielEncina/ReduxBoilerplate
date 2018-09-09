@@ -5,15 +5,16 @@ import { connect } from 'react-redux';
 import * as actions from './../actions';
 
 class Tabs extends Component {
-  // Initialize State
-  state = {
-    // First tab is active by default
-    activeTab: 0
-  };
+  constructor(props) {
+     super(props);
+     this.state = {
+       activeTab: 0
+     };
+  }
 
   // Pull children out of props passed from App component
   render({ children } = this.props) {
-    console.log(this.props);
+    console.log(this.props.activeTab);
     return (
       <View style={styles.container}>
         {/* Tabs row */}
@@ -29,6 +30,7 @@ class Tabs extends Component {
               ]}
               // Change active tab
               onPress={() => {
+                console.log(index);
                 this.props.seletedTab(index);
               }}
               // Required key prop for components generated returned by map iterator
@@ -46,7 +48,7 @@ class Tabs extends Component {
           ))}
         </View>
         {/* Content */}
-        <View style={styles.contentContainer}>{children[this.state.activeTab]}</View>
+        <View style={styles.contentContainer}>{children[this.props.activeTab]}</View>
       </View>
     );
   }
