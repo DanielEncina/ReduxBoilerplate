@@ -1,16 +1,19 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
-import Reducers from './src/reducers';
+
 import SuperHeroesList from './src/SuperHeroesList.js';
+import SuperHeroesList2 from './src/SuperHeroesList2.js';
+import configureStore from './src/configureStore.js';
 import Tabs from './src/components/tabs.js';
+
+const store = configureStore();
 
 type Props = {};
 export default class App extends Component<Props> {
   render() {
     return (
-      <Provider store={createStore(Reducers)}>
+      <Provider store={store}>
         <View style={styles.container}>
           <Tabs>
             {/* First tab */}
@@ -23,10 +26,11 @@ export default class App extends Component<Props> {
             </View>
             {/* Second tab */}
             <View title="NATIVE" style={styles.content}>
-              <Text style={styles.header}>Truly Native</Text>
+              <SuperHeroesList2 />
+              {/* <Text style={styles.header}>Ease of Learning</Text>
               <Text style={styles.text}>
-                Components you define will end up rendering as native platform widgets
-              </Text>
+                It’s much easier to read and write comparing to native platform’s code
+              </Text> */}
             </View>
             {/* Third tab */}
             <View title="EASY" style={styles.content}>
