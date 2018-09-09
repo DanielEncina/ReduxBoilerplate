@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import Reducers from './src/reducers';
 import SuperHeroesList from './src/SuperHeroesList.js';
+import Tabs from './src/components/tabs.js';
 
 type Props = {};
 export default class App extends Component<Props> {
@@ -11,7 +12,30 @@ export default class App extends Component<Props> {
     return (
       <Provider store={createStore(Reducers)}>
         <View style={styles.container}>
-          <SuperHeroesList />
+          <Tabs>
+            {/* First tab */}
+            <View title="WELCOME" style={styles.content}>
+              <SuperHeroesList />
+              {/* <Text style={styles.header}>Welcome to React Native</Text>
+              <Text style={styles.text}>
+                The best technology to build cross platform mobile apps with
+              </Text> */}
+            </View>
+            {/* Second tab */}
+            <View title="NATIVE" style={styles.content}>
+              <Text style={styles.header}>Truly Native</Text>
+              <Text style={styles.text}>
+                Components you define will end up rendering as native platform widgets
+              </Text>
+            </View>
+            {/* Third tab */}
+            <View title="EASY" style={styles.content}>
+              <Text style={styles.header}>Ease of Learning</Text>
+              <Text style={styles.text}>
+                It’s much easier to read and write comparing to native platform’s code
+              </Text>
+            </View>
+          </Tabs>
         </View>
       </Provider>
     );
@@ -21,8 +45,25 @@ export default class App extends Component<Props> {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: '#E91E63'
+  },
+  content: {
+    flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#F5FCFF'
+    backgroundColor: '#C2185B'
+  },
+  header: {
+    margin: 10,
+    color: '#FFFFFF',
+    fontFamily: 'Avenir',
+    fontSize: 26
+  },
+  text: {
+    marginHorizontal: 20,
+    color: 'rgba(255, 255, 255, 0.75)',
+    textAlign: 'center',
+    fontFamily: 'Avenir',
+    fontSize: 18
   }
 });
